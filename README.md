@@ -38,7 +38,7 @@ The above command works.
 
 Now running the beat detached:
 
-PEX_SCRIPT=celery ./dist/example.celery.pex beat --app=app.worker.app --detach --loglevel=DEBUG --logfile=./celeryBeat.log
+PEX_SCRIPT=celery ./dist/example.celery.pex beat --app=app.worker.app --detach --loglevel=DEBUG --logfile=./celeryBeatDetach.log
 
 
 
