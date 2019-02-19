@@ -19,20 +19,27 @@ Pex file will be created in ./dist sub dir.
 
 - Start Celery worker:
 
-PEX_SCRIPT=celery ./dist/example.celery.pex worker --app=app.worker.app
+PEX_SCRIPT=celery ./dist/example.celery.pex worker --app=app.worker.app --loglevel=DEBUG --logfile=./celeryWorker.log
 
 - Start Celery beat:
 
-PEX_SCRIPT=celery ./dist/example.celery.pex beat --app=app.worker.app
+PEX_SCRIPT=celery ./dist/example.celery.pex beat --app=app.worker.app --loglevel=DEBUG --logfile=./celeryBeat.log
 
 - Start Flask with gunicorn:
 
 PEX_SCRIPT=gunicorn ./dist/example.celery.pex app:app -c config.ini
 
 
-# Celery headless worker issue demonstration
+# Celery headless issue demonstration
 
-PEX_SCRIPT=celery ./dist/example.celery.pex worker --app=app.worker.app --detach
+PEX_SCRIPT=celery ./dist/example.celery.pex worker --app=app.worker.app --detach --loglevel=DEBUG --logfile=./celeryWorkerDetach.log
 
-The above command fails quietly. I believe this is due to the detached instance being started outside of the pex environment and so without the required dependencies.
+The above command works.
+
+Now running the beat detached:
+
+PEX_SCRIPT=celery ./dist/example.celery.pex beat --app=app.worker.app --detach --loglevel=DEBUG --logfile=./celeryBeat.log
+
+
+
 
